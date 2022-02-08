@@ -1,0 +1,67 @@
+<div class="flex">
+    <h1 class="text-xl font-bold text-gray-800">Tags</h1>
+    <button class="text-blue-600 visited:text-purple-600 hover:text-blue-900" type="button" (click)="toggleModal()">
+    &nbsp; (new tag)
+    </button>
+  </div>
+  <ol class="list-decimal">
+    <li *ngFor="let tag of tags">
+      {{ tag.tag }},
+      (<button (click)="onLoadTag(tag.id, tag.tag)" class="text-blue-600 visited:text-purple-600 hover:text-blue-900">Load</button>, 
+      <button (click)="onDeleteTag(tag)" class="text-blue-600 visited:text-purple-600 hover:text-blue-900">Delete</button>)
+    </li>
+</ol>
+
+<div *ngIf="modalStatus" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+    <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+        <!--content-->
+        <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+    
+            <!--header-->
+            <div class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t bg-blue-800">
+                <h3 class="text-xl font-semibold text-white">Modal Title</h3>
+                <button class="bg-transparent border-0 opacity-3 text-white float-right text-xl leading-none font-semibold outline-none focus:outline-none" (click)="onClose()">
+                    <span class="bg-transparent text-white h-6 w-6 text-xl block outline-none focus:outline-none">×</span>
+                </button>
+            </div>
+            <!--body-->
+            <div class="relative p-6 flex-auto">
+                <form [formGroup]="form">
+                    <div class="space-y-3 text-sm">
+                            
+                        <div class="flex flex-row items-center">
+                            <div class="flex flex-row items-center">
+                            <label class="font-semibold mr-2 w-25 text-right">Language:</label>
+                            <div class="flex flex-col">
+                                <select formControlName="language" class="outline-none ng-untouched ng-pristine ng-invalid rounded-md">
+                                <option value="python">Python</option>
+                                <option value="javascript">Javascript</option>
+                                </select>
+                            </div>
+                            </div>
+                        </div>
+                    
+                        <div class="flex flex-row items-center">
+                            <div class="flex flex-row items-center">
+                            <label class="font-semibold mr-2 w-25 text-right">Tag:</label>
+                            <div class="flex flex-col">
+                                <input id="linesofcode" type="text" class="outline-none p-1 ng-untouched ng-pristine ng-invalid rounded-md" formControlName="tag">
+                                <span class="mt-1 text-xs text-red-600 font-semibold">Error</span>
+                            </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>
+            
+            <!--footer-->
+            <div class="flex items-center p-6 justify-around text-sm">
+                <button class="text-indigo-700 bg-indigo-100 p-2" type="button" (click)="onClose()">Close</button>
+                <button class="bg-indigo-600 text-white p-2" type="button" (click)="onSubmit()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="modalStatus" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
+

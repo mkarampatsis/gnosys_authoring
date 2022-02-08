@@ -1,0 +1,152 @@
+<div class="flex space-x-4">
+  <div class="justify-between w-2/3 rounded-xl mt-4 p-4 bg-white shadow-lg">
+    <h1 class="text-xl font-bold text-gray-800 mt-4">Enter metadata for script {{scriptName}}</h1>
+    <!-- flex justify-between -->
+    <div class="flex">
+      <div class="w-1/2">
+   
+        <form [formGroup]="form">
+          <div class="space-y-3 text-sm">
+                
+            <div class="flex flex-row items-center">
+              <div class="flex flex-row items-center">
+                <label class="font-semibold mr-2 w-25 text-right">Script Name:</label>
+                <div class="flex flex-col">
+                  <select formControlName="scriptid" (change)="onSelectChange()" class="outline-none  ng-untouched ng-pristine ng-invalid rounded-md">
+                    <option *ngFor="let script of scripts" value={{script.id}}>
+                      {{ script.name }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+      
+            <div class="flex flex-row items-center">
+              <div class="flex flex-row items-center">
+                <label class="font-semibold mr-2 w-25 text-right">Lines of Code:</label>
+                <div class="flex flex-col">
+                  <input id="linesofcode" type="text" class="outline-none p-1 ng-untouched ng-pristine ng-invalid rounded-md" formControlName="linesofcode">
+                   <span class="mt-1 text-xs text-red-600 font-semibold">Error</span>
+                </div>
+              </div>
+            </div>
+      
+            <div class="flex flex-row items-center">
+              <div class="flex flex-row items-center">
+                <label class="font-semibold mr-2 w-25 text-right">Time to solve the exercise:</label>
+                <div class="flex flex-col">
+                  <input id="timetosolve" type="text" class="outline-none p-1 ng-untouched ng-pristine ng-invalid rounded-md" formControlName="timetosolve">
+                  <span class="mt-1 text-xs text-red-600 font-semibold">Error</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-row items-center">
+              <div class="flex flex-row items-center">
+                <label class="font-semibold mr-2 w-25 text-right">Number of if conditions:</label>
+                <div class="flex flex-col">
+                  <input id="numof_if" type="text" class="outline-none p-1 ng-untouched ng-pristine ng-invalid rounded-md" formControlName="numofif">
+                  <span class="mt-1 text-xs text-red-600 font-semibold">Error</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-row items-center">
+              <div class="flex flex-row items-center">
+                <label class="font-semibold mr-2 w-25 text-right">Number of for conditions:</label>
+                <div class="flex flex-col">
+                  <input id="numof_for" type="text" class="outline-none p-1 ng-untouched ng-pristine ng-invalid rounded-md" formControlName="numoffor">
+                  <span class="mt-1 text-xs text-red-600 font-semibold">Error</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-row items-center">
+              <div class="flex flex-row items-center">
+                <label class="font-semibold mr-2 w-25 text-right">Tags:</label>
+                <div class="flex flex-col">
+                  <div formArrayName="tags">
+                    <div *ngFor="let tagForm of childTags.controls; let i = index">
+                      <div [formGroupName]="i" >
+                          <input type="text" formControlName="id" hidden>
+                          <input type="text" formControlName="name" class="outline-none mt-1 p-1 bg-gray-200 ng-untouched ng-pristine ng-invalid rounded-md" [attr.disabled]="true">
+                          &nbsp;
+                          <button class="text-blue-600 visited:text-purple-600 hover:text-blue-900" (click)="deleteTag(i)"> Delete</button>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div class="flex">
+                    <span class="mt-1 text-xs text-red-600 font-semibold">Error</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </form>
+          
+      </div>
+  
+      <div class="w-1/2">
+        <div class="font-semibold text-center">Script Code</div>
+        <div class="bg-gray-400 rounded-md">
+          <div *ngFor="let script of scriptCode" class="ml-5">
+            {{ script }}
+          </div>
+        </div>  
+      </div>
+    </div>
+      
+      
+    <div class="flex flex-row items-center mt-6 justify-around text-sm">
+      <button routerLink="" class="text-indigo-700 bg-indigo-100 p-2">Cancel</button>
+      <button
+        (click)="onSubmit()"
+        class="bg-indigo-600 text-white p-2 {{
+          form.valid ? 'cursor-pointer' : 'cursor-not-allowed'
+        }}"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+    
+  <!-- <div class="justify-between w-1/3 rounded-xl mt-4 p-8 bg-white shadow-lg"> -->
+  <div class="w-1/3">
+    <div class="justify-between rounded-xl mt-4 p-8 bg-white shadow-lg space-x-4 s">
+      <h1 class="text-xl font-bold text-gray-800">My Metadata</h1>
+      <ol class="list-decimal">
+        <li *ngFor="let metadata of metadatas">
+          {{ metadata.scriptname }},
+          (<button (click)="onLoad(metadata.id, metadata.scriptid)" class="text-blue-600 visited:text-purple-600 hover:text-blue-900">Load</button>, 
+          <button (click)="onDelete(metadata)" class="text-blue-600 visited:text-purple-600 hover:text-blue-900">Delete</button>)
+          <span *ngIf="metadata.id===activeMetadataID" class="text-red-600">active</span>
+        </li>
+      </ol>
+    </div>
+    <div class="justify-between rounded-xl mt-4 p-8 bg-white shadow-lg space-x-4 s">
+      <gnosys-tags (callAddTagFunction)="addTag($event)"></gnosys-tags>
+      <!-- <div class="flex">
+        <h1 class="text-xl font-bold text-gray-800">Tags</h1>
+        <button class="text-blue-600 visited:text-purple-600 hover:text-blue-900" type="button" (click)="toggleModal()">
+        &nbsp; (new tag)
+        </button>
+      </div>
+      <ol class="list-decimal">
+        <li *ngFor="let tag of tags">
+          {{ tag.tag }},
+          (<button (click)="onLoadTag(tag.id)" class="text-blue-600 visited:text-purple-600 hover:text-blue-900">Load</button>, 
+          <button (click)="onDeleteTag(tag)" class="text-blue-600 visited:text-purple-600 hover:text-blue-900">Delete</button>)
+        </li>
+      </ol> -->
+    </div>
+
+  </div>
+  
+</div>
+
+<!-- <div *ngIf="authoringService.modalStatus" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+  <gnosys-tags></gnosys-tags>
+</div>
+<div *ngIf="authoringService.modalStatus" class="opacity-25 fixed inset-0 z-40 bg-black"></div> -->

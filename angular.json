@@ -1,0 +1,492 @@
+{
+  "version": 1,
+  "projects": {
+    "gnosys": {
+      "projectType": "application",
+      "root": "apps/gnosys",
+      "sourceRoot": "apps/gnosys/src",
+      "prefix": "gnosys",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/gnosys",
+            "index": "apps/gnosys/src/index.html",
+            "main": "apps/gnosys/src/main.ts",
+            "polyfills": "apps/gnosys/src/polyfills.ts",
+            "tsConfig": "apps/gnosys/tsconfig.app.json",
+            "assets": ["apps/gnosys/src/favicon.ico", "apps/gnosys/src/assets"],
+            "styles": ["apps/gnosys/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/gnosys/src/environments/environment.ts",
+                  "with": "apps/gnosys/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "gnosys:build:production"
+            },
+            "development": {
+              "browserTarget": "gnosys:build:development"
+            }
+          },
+          "defaultConfiguration": "development",
+          "options": {
+            "proxyConfig": "apps/gnosys/proxy.conf.json"
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "gnosys:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/gnosys/src/**/*.ts",
+              "apps/gnosys/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/gnosys"],
+          "options": {
+            "jestConfig": "apps/gnosys/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "gnosys-api": {
+      "root": "apps/gnosys-api",
+      "sourceRoot": "apps/gnosys-api/src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/gnosys-api",
+            "main": "apps/gnosys-api/src/main.ts",
+            "tsConfig": "apps/gnosys-api/tsconfig.app.json",
+            "assets": ["apps/gnosys-api/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/gnosys-api/src/environments/environment.ts",
+                  "with": "apps/gnosys-api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "gnosys-api:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/gnosys-api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/gnosys-api"],
+          "options": {
+            "jestConfig": "apps/gnosys-api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "gnosys-e2e": {
+      "root": "apps/gnosys-e2e",
+      "sourceRoot": "apps/gnosys-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/gnosys-e2e/cypress.json",
+            "devServerTarget": "gnosys:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "gnosys:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/gnosys-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": ["gnosys"]
+    },
+    "gnosys-hint-app": {
+      "projectType": "application",
+      "root": "apps/gnosys/hint-app",
+      "sourceRoot": "apps/gnosys/hint-app/src",
+      "prefix": "gnosys",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/gnosys/hint-app",
+            "index": "apps/gnosys/hint-app/src/index.html",
+            "main": "apps/gnosys/hint-app/src/main.ts",
+            "polyfills": "apps/gnosys/hint-app/src/polyfills.ts",
+            "tsConfig": "apps/gnosys/hint-app/tsconfig.app.json",
+            "assets": [
+              "apps/gnosys/hint-app/src/favicon.ico",
+              "apps/gnosys/hint-app/src/assets"
+            ],
+            "styles": ["apps/gnosys/hint-app/src/styles.css"],
+            "scripts": ["./node_modules/jquery/dist/jquery.min.js"]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/gnosys/hint-app/src/environments/environment.ts",
+                  "with": "apps/gnosys/hint-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "gnosys-hint-app:build:production"
+            },
+            "development": {
+              "browserTarget": "gnosys-hint-app:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "gnosys-hint-app:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/gnosys/hint-app/src/**/*.ts",
+              "apps/gnosys/hint-app/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/gnosys/hint-app"],
+          "options": {
+            "jestConfig": "apps/gnosys/hint-app/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "gnosys-hint-app-e2e": {
+      "root": "apps/gnosys/hint-app-e2e",
+      "sourceRoot": "apps/gnosys/hint-app-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/gnosys/hint-app-e2e/cypress.json",
+            "devServerTarget": "gnosys-hint-app:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "gnosys-hint-app:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/gnosys/hint-app-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": ["gnosys-hint-app"]
+    },
+    "hint-app": {
+      "projectType": "application",
+      "root": "apps/hint-app",
+      "sourceRoot": "apps/hint-app/src",
+      "prefix": "gnosys",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/hint-app",
+            "index": "apps/hint-app/src/index.html",
+            "main": "apps/hint-app/src/main.ts",
+            "polyfills": "apps/hint-app/src/polyfills.ts",
+            "tsConfig": "apps/hint-app/tsconfig.app.json",
+            "assets": [
+              "apps/hint-app/src/favicon.ico",
+              "apps/hint-app/src/assets"
+            ],
+            "styles": ["apps/hint-app/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/hint-app/src/environments/environment.ts",
+                  "with": "apps/hint-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "hint-app:build:production"
+            },
+            "development": {
+              "browserTarget": "hint-app:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "hint-app:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/hint-app/src/**/*.ts",
+              "apps/hint-app/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/hint-app"],
+          "options": {
+            "jestConfig": "apps/hint-app/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "hint-app-e2e": {
+      "root": "apps/hint-app-e2e",
+      "sourceRoot": "apps/hint-app-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/hint-app-e2e/cypress.json",
+            "devServerTarget": "hint-app:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "hint-app:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/hint-app-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": ["hint-app"]
+    },
+    "interfaces": {
+      "root": "libs/interfaces",
+      "sourceRoot": "libs/interfaces/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/workspace:tsc",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/interfaces",
+            "main": "libs/interfaces/src/index.ts",
+            "tsConfig": "libs/interfaces/tsconfig.lib.json",
+            "assets": ["libs/interfaces/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/interfaces/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/interfaces"],
+          "options": {
+            "jestConfig": "libs/interfaces/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "ui": {
+      "projectType": "library",
+      "root": "libs/ui",
+      "sourceRoot": "libs/ui/src",
+      "prefix": "ui",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/ui"],
+          "options": {
+            "project": "libs/ui/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/ui/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/ui/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ui"],
+          "options": {
+            "jestConfig": "libs/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/ui/src/**/*.ts", "libs/ui/src/**/*.html"]
+          }
+        }
+      },
+      "tags": []
+    }
+  }
+}

@@ -1,0 +1,48 @@
+<div class="p-2 flex flex-col">
+    <label for="email" class="block text-sm font-medium text-gray-700"
+      >Strengthen Case ID</label
+    >
+    <div class="mt-1">
+      <input
+        #caseName
+        type="text"
+        name="email"
+        id="email"
+        class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block border-gray-300"
+      />
+    </div>
+  </div>
+  
+  <input
+    class="file-input"
+    type="file"
+    multiple
+    (change)="onFileSelection($event)"
+    #fileUpload
+  />
+  <div class="p-2 flex flex-row items-center space-x-2">
+    <span *ngIf="!filenames.length">No files selected yet.</span>
+    <table class="divide-y divide-gray-200">
+      <tr *ngFor="let file of filenames">
+        <td>{{ file.name }}</td>
+        <td>{{ file.size / 1024 | number: '1.2-2' }} K</td>
+        <td>{{ file.type }}</td>
+      </tr>
+    </table>
+    <button
+      type="button"
+      (click)="fileUpload.click()"
+      class="inline-flex items-center p-2 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+    >
+      <svg-icon [key]="'paper-clip'"></svg-icon>
+    </button>
+  </div>
+  <div class="p-2 inline-flex items-center">
+    <button
+      (click)="strengthen(caseName.value)"
+      type="button"
+      class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+    >
+      <svg-icon [key]="'cloud-upload'" class="mr-2"></svg-icon> Upload
+    </button>
+  </div>

@@ -1,0 +1,35 @@
+<div class="flex flex-col">
+  <div class="flex flex-row justify-between bg-gray-300">
+    <div class="flex flex-row justify-around items-center w-1/2 bg-gray-200">
+      <button (click)="onNew()" class="h-6 w-6">
+        <svg-icon
+          key="document"
+          class="text-gray-800 hover:text-red-700"
+        ></svg-icon>
+      </button>
+      <button (click)="onSave()" class="h-6 w-6">
+        <svg-icon key="download" class="hover:text-red-700"></svg-icon>
+      </button>
+      <button (click)="onOpen()" class="h-6 w-6">
+        <svg-icon key="upload" class="hover:text-red-700"></svg-icon>
+      </button>
+      <button (click)="onRun()" class="h-6 w-6">
+        <svg-icon key="play" class="hover:text-red-700"></svg-icon>
+      </button>
+    </div>
+    <div class="text-xs">
+      <input
+        type="text"
+        name="filename"
+        id="filename"
+        class="
+          focus:ring-indigo-500 focus:border-indigo-500
+          text-xs
+          border-gray-300
+        "
+        placeholder="Script Name"
+      />
+    </div>
+  </div>
+  <div #editor class="border mt-1"></div>
+</div>

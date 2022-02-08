@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap"
+      rel="stylesheet"
+    />
+    <script src="/assets/brython-runner/lib/brython-runner.bundle.js"></script>
+  </head>
+  <body>
+    <div id="output"></div>
+    <script>
+      const runner = new BrythonRunner({
+        stdout: {
+          write(content) {
+            var el = document.createElement('code');
+            var text = document.createTextNode(content);
+            el.appendChild(text);
+            document.getElementById('output').appendChild(el);
+          },
+          flush() {},
+        },
+        stderr: {
+          write(content) {
+            var el = document.createElement('code');
+            var text = document.createTextNode(content);
+            el.appendChild(text);
+            el.setAttribute('class', 'error');
+            document.getElementById('output').appendChild(el);
+          },
+          flush() {},
+        },
+        stdin: {
+          async readline() {
+            var data = prompt();
+
+            var el = document.createElement('code');
+            var text = document.createTextNode(data + '\n');
+            el.appendChild(text);
+            document.getElementById('output').appendChild(el);
+
+            return data;
+          },
+        },
+      });
+      function clearOutput() {
+        document.getElementById('output').innerHTML = '';
+      }
+      function getCode() {
+        return editor.getDoc().getValue();
+      }
+      function run(code) {
+        clearOutput();
+        // const code = getCode();
+        runner.runCode(code);
+      }
+      window.addEventListener('message', handleMessage, false);
+      function handleMessage(e) {
+        // editor.setValue(e.data);
+        run(e.data);
+      }
+    </script>
+  </body>
+</html>

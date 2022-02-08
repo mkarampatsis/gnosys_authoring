@@ -1,0 +1,121 @@
+<div
+  class="
+    flex
+    items-end
+    justify-center
+    pt-4
+    px-4
+    pb-20
+    text-center
+    sm:block sm:p-0
+  "
+>
+  <span class="hidden sm:inline-block sm:align-middle" aria-hidden="true"
+    >&#8203;</span
+  >
+  <div
+    class="
+      inline-block
+      align-bottom
+      bg-white
+      mt-6
+      px-4
+      pt-5
+      pb-4
+      text-left
+      overflow-hidden
+      transform
+      transition-all
+      sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6
+    "
+  >
+    <div class="sm:flex sm:items-start">
+      <div
+        class="
+          mx-auto
+          flex-shrink-0 flex
+          items-center
+          justify-center
+          h-12
+          w-12
+          rounded-full
+          bg-yellow-500
+          sm:mx-0 sm:h-10 sm:w-10
+        "
+      >
+        <svg-icon
+          key="question-mark-circle"
+          class="h-6 w-6 text-white"
+        ></svg-icon>
+      </div>
+      <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+        <h3
+          class="text-lg leading-6 font-medium text-gray-900"
+          id="modal-title"
+        >
+          Are you sure?
+        </h3>
+        <div class="mt-2">
+          <p class="text-sm text-gray-500">
+            {{ ref.data.body }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+      <button
+        type="button"
+        (click)="ref.close(true)"
+        class="
+          w-full
+          inline-flex
+          justify-center
+          rounded-md
+          border border-transparent
+          shadow-sm
+          px-4
+          py-2
+          bg-yellow-600
+          text-base
+          font-medium
+          text-white
+          hover:bg-yellow-700
+          focus:outline-none
+          focus:ring-2
+          focus:ring-offset-2
+          focus:ring-yellow-500
+          sm:ml-3 sm:w-auto sm:text-sm
+        "
+      >
+        Yes
+      </button>
+      <button
+        type="button"
+        (click)="ref.close(false)"
+        class="
+          mt-3
+          w-full
+          inline-flex
+          justify-center
+          rounded-md
+          border border-gray-300
+          shadow-sm
+          px-4
+          py-2
+          bg-white
+          text-base
+          font-medium
+          text-gray-700
+          hover:bg-gray-50
+          focus:outline-none
+          focus:ring-2
+          focus:ring-offset-2
+          focus:ring-indigo-500
+          sm:mt-0 sm:w-auto sm:text-sm
+        "
+      >
+        No
+      </button>
+    </div>
+  </div>
+</div>

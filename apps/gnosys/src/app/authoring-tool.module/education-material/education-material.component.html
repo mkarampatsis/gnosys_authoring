@@ -1,0 +1,98 @@
+
+<div class="flex space-x-4">
+    <div class="justify-between w-2/3 rounded-xl mt-4 p-4 bg-white shadow-lg">
+      <h1 class="text-xl font-bold text-gray-800 mt-4">Upload educational material for script {{scriptName}}</h1>
+      <!-- flex justify-between -->
+      <div class="flex">
+        <div class="w-1/2">
+          
+          
+            <form [formGroup]="form">
+              <div class="space-y-3 text-sm">
+                
+                <div class="flex flex-row items-center">
+                    <div class="flex flex-row items-center">
+                      <label class="font-semibold mr-2 w-25 text-right">Script Name:</label>
+                      <div class="flex flex-col">
+                        <select formControlName="scriptid" (change)="onSelectChange()" class="outline-none  ng-untouched ng-pristine ng-invalid rounded-md">
+                          <option *ngFor="let script of scripts" value={{script.id}}>
+                            {{ script.name }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                </div>
+      
+                <div class="flex flex-row items-center">
+                  <div class="flex flex-row items-center">
+                    <label class="font-semibold mr-2 w-25 text-right">About Script:</label>
+                    <div class="flex flex-col">
+                        <textarea  id="about" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-800 mt-1 block w-full sm:text-sm border border-gray-600 rounded-md" formControlName="about"></textarea>
+                        <span class="mt-1 text-xs text-red-600 font-semibold">Error</span>
+                    </div>
+                  </div>
+                </div>
+      
+                <div class="flex flex-row items-center">
+                  <div class="flex flex-row items-center">
+                    <label class="font-semibold mr-2 w-25 text-right">Upload File:</label>
+                    <div class="flex flex-col">
+                      <input id="file" type="file" class="outline-none p-1 ng-untouched ng-pristine ng-invalid rounded-md" formControlName="file">
+                      <span class="mt-1 text-xs text-red-600 font-semibold">Error</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex flex-row items-center">
+                    <div class="flex flex-row items-center">
+                      <label class="font-semibold mr-2 w-25 text-right">Upload Video:</label>
+                      <div class="flex flex-col">
+                        <input id="video" type="file" class="outline-none p-1 ng-untouched ng-pristine ng-invalid rounded-md" formControlName="video">
+                        <span class="mt-1 text-xs text-red-600 font-semibold">Error</span>
+                      </div>
+                    </div>
+                </div>
+                  
+              </div>
+            </form>
+          
+         </div>
+  
+        <div class="w-1/2">
+          <div class="font-semibold text-center">Script Code</div>
+          <div class="bg-gray-400 rounded-md">
+            <div *ngFor="let script of scriptCode" class="ml-5">
+              {{ script }}
+            </div>
+          </div>  
+        </div>
+        
+      </div>
+      
+      
+      <div class="flex flex-row items-center mt-6 justify-around text-sm">
+        <button routerLink="" class="text-indigo-700 bg-indigo-100 p-2">Cancel</button>
+        <button
+          (click)="onSubmit()"
+          class="bg-indigo-600 text-white p-2 {{
+            form.valid ? 'cursor-pointer' : 'cursor-not-allowed'
+          }}"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+    
+    <div class="justify-between w-1/3 rounded-xl mt-4 p-8 bg-white shadow-lg">
+      <h1 class="text-xl font-bold text-gray-800">My Material</h1>
+      <ol class="list-decimal">
+        <li *ngFor="let edumaterial of edumaterials">
+          {{ edumaterial.scriptname }},
+          (<button (click)="onLoad(edumaterial.id, edumaterial.scriptid)" class="text-blue-600 visited:text-purple-600 hover:text-blue-900">Load</button>, 
+          <button (click)="onDelete(edumaterial)" class="text-blue-600 visited:text-purple-600 hover:text-blue-900">Delete</button>)
+          <span *ngIf="edumaterial.id===activeEduMaterialID" class="text-red-600">active</span>
+        </li>
+      </ol>
+    </div>
+  
+  </div>
