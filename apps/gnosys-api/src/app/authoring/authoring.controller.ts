@@ -144,7 +144,7 @@ export class AuthoringController {
         @Body('timetosolve') Timetosolve: string,
         @Body('numofif') Numofif: string, 
         @Body('numoffor') Numoffor: string, 
-        @Body('tags') Tags: string
+        @Body('tags') Tags: { id: string; name: string; }[]
     ){
         await this.authoringService.updateMetadata(Id, ScriptID, ScriptName, Linesofcode, Timetosolve, Numofif, Numoffor, Tags);
         return null;

@@ -584,7 +584,7 @@ let AuthoringController = class AuthoringController {
     (0, tslib_1.__param)(6, (0, common_1.Body)('numoffor')),
     (0, tslib_1.__param)(7, (0, common_1.Body)('tags')),
     (0, tslib_1.__metadata)("design:type", Function),
-    (0, tslib_1.__metadata)("design:paramtypes", [String, String, String, String, String, String, String, String]),
+    (0, tslib_1.__metadata)("design:paramtypes", [String, String, String, String, String, String, String, Array]),
     (0, tslib_1.__metadata)("design:returntype", Promise)
 ], AuthoringController.prototype, "updateMetadata", null);
 (0, tslib_1.__decorate)([

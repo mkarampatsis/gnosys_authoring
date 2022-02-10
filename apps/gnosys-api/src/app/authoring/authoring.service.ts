@@ -203,7 +203,7 @@ export class AuthoringService {
         return this.findMetadata(Id);
     }
 
-    async updateMetadata(Id: string, scriptid: string, scriptname: string, linesofcode: string, timetosolve: string, numofif: string, numoffor: string, tags: string ){
+    async updateMetadata(Id: string, scriptid: string, scriptname: string, linesofcode: string, timetosolve: string, numofif: string, numoffor: string, tags: { id: string; name: string; }[] ){
         const updatedMetadata = await this.findMetadata(Id)
         
         if (scriptid){

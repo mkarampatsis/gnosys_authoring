@@ -3,6 +3,7 @@ export interface Message {
     message: string;
 }
 export interface User {
+    id: string;
     email: string;
     displayName: string;
     firstName: string;
@@ -39,4 +40,51 @@ export interface Generic {
 export interface Controls {
     name: string;
     value: FormControl<string>;
+}
+export interface Hint {
+    id: string;
+    scriptid: string;
+    scriptname: string;
+    email: string;
+    title: string;
+    description: string;
+    code: string;
+    loading: boolean;
+}
+export interface Script {
+    id: string;
+    email: string;
+    name: string;
+    description: string;
+    code: Array<string>;
+    language: string;
+    loading: boolean;
+}
+export interface EduMaterial {
+    id: string;
+    scriptid: string;
+    scriptname: string;
+    email: string;
+    about: string;
+    file: string;
+    video: string;
+    loading: boolean;
+}
+export interface Metadata {
+    id: string;
+    scriptid: string;
+    scriptname: string;
+    email: string;
+    linesofcode: string;
+    timetosolve: string;
+    numofif: string;
+    numoffor: string;
+    tags: string[];
+    loading: boolean;
+}
+export interface Tags {
+    id: string;
+    language: string;
+    tag: string;
+    loading: boolean;
 }
