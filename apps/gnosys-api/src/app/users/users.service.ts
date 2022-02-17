@@ -43,8 +43,7 @@ export class UsersService {
     const createdUser = new this.userModel(createUserDto);
     await this.isEmailUnique(createdUser.email);
     this.setRegistrationInfo(createdUser);
-    // Sxolio apo marko, den exoume to api key tou send mail
-    //await this.sendRegistrationEmail(createdUser);
+    await this.sendRegistrationEmail(createdUser);
     return await createdUser.save();
   }
 

@@ -75,6 +75,7 @@ export class CodeEditorComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.form.valid, this.form.value);
     if (this.form.valid) {
       this.actions.dispatch(
         ScriptCreateAction({ data: this.form.value as Script })
