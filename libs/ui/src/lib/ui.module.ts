@@ -9,10 +9,10 @@ import { AlertComponent } from './alert/alert.component';
 import { SvgIconComponent } from './svg-icon/svg-icon.component';
 
 import { SvgIconsModule } from '@ngneat/svg-icon';
-import { code4CodeIcons } from '@gnosys/svg/code4code';
+import { code4CodeIcons } from '../lib/svg/code4code';
 
-import { EditorComponent } from './editor/editor.component';
-import { DialogAreyousureComponent } from './dialog-areyousure/dialog-areyousure.component';
+// import { EditorComponent } from './editor/editor.component';
+// import { DialogAreyousureComponent } from './dialog-areyousure/dialog-areyousure.component';
 import { CodemirrorComponent } from './codemirror/codemirror.component';
 
 @NgModule({
@@ -27,8 +27,8 @@ import { CodemirrorComponent } from './codemirror/codemirror.component';
     LoadingComponent,
     AlertComponent,
     SvgIconComponent,
-    DialogAreyousureComponent,
-    EditorComponent,
+    // DialogAreyousureComponent,
+    // EditorComponent,
     CodemirrorComponent,
   ],
   exports: [
@@ -37,9 +37,10 @@ import { CodemirrorComponent } from './codemirror/codemirror.component';
     LoadingComponent,
     AlertComponent,
     SvgIconComponent,
-    DialogAreyousureComponent,
-    EditorComponent,
+    // DialogAreyousureComponent,
+    // EditorComponent,
     CodemirrorComponent,
+
   ],
 })
 export class UiModule {}

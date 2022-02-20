@@ -10,7 +10,7 @@ import { MetadataComponent } from './metadata/metadata.component';
 import { UiModule } from '@gnosys/ui';
 import { VendorModule } from '@nocode/vendor';
 import { SvgIconsModule } from '@ngneat/svg-icon';
-import { code4CodeIcons } from '@gnosys/svg/code4code';
+import { code4CodeIcons } from '@gnosys/ui';
 import { PreviewComponent } from './preview/preview.component';
 import { ReportsComponent } from './reports/reports.component';
 import { TagsComponent } from './tags/tags.component';

@@ -7,7 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UiModule } from '@gnosys/ui';
 import { DialogModule } from '@ngneat/dialog';
 import { SvgIconsModule } from '@ngneat/svg-icon';
-import { questionMarkCircleIcon } from '@gnosys/svg/code4code/question-mark-circle';
+// import { questionMarkCircleIcon } from '@gnosys/svg/code4code/question-mark-circle';
 
 import { AppComponent } from './app.component';
 
@@ -70,7 +70,7 @@ import { AlertsComponent } from './components/alerts/alerts.component';
         xxl: '30px',
       },
       defaultSize: 'xl',
-      missingIconFallback: questionMarkCircleIcon,
+      // missingIconFallback: questionMarkCircleIcon,
     }),
     DialogModule.forRoot({
       sizes: {
