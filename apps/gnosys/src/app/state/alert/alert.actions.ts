@@ -25,3 +25,7 @@ export const AlertDismissAction = createAction(
   'DISMISS ALERT',
   props<{ id: string }>()
 );
+
+export const AlertResetAction = createAction(
+  'Reset Alert'
+)

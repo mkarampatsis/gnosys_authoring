@@ -20,10 +20,11 @@ import { environment } from '../environments/environment';
 import { GnosysUserEffects, AlertEffects, GnosysRouterEffects, GnosysAuthoringToolEffects } from './state';
 
 import { authInterceptorProviders } from './services';
-import { AlertsComponent } from './components/alerts/alerts.component';
+//import { AlertsComponent } from './components/alerts/alerts.component';
 
 @NgModule({
-  declarations: [AppComponent, AlertsComponent],
+  // declarations: [AppComponent, AlertsComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     RouterModule.forRoot(

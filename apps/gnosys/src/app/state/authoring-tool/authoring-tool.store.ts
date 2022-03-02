@@ -20,7 +20,7 @@ export function createHintInitialState(): HintState {
 }
 
 @Injectable({ providedIn: 'root' })
-@StoreConfig({ name: 'hints' })
+@StoreConfig({ name: 'hints', resettable: true })
 export class HintStore extends EntityStore<HintState> {
   constructor() {
     super(createHintInitialState()) ;

@@ -15,6 +15,8 @@ import { PreviewComponent } from './preview/preview.component';
 import { ReportsComponent } from './reports/reports.component';
 import { TagsComponent } from './tags/tags.component';
 
+import { AlertsComponent } from '../components/alerts/alerts.component';
+
 export const userRoutes: Route[] = [
   { path: '', component: LandingAuthoringComponent },
   //{ path: 'hint', component: HintEditorComponent },
@@ -29,7 +31,8 @@ export const userRoutes: Route[] = [
     MetadataComponent,
     PreviewComponent,
     ReportsComponent,
-    TagsComponent
+    TagsComponent,
+    AlertsComponent,
   ],
   imports: [
     CommonModule, 

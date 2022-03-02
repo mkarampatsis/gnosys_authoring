@@ -5,7 +5,7 @@ import { Alert } from './alert.model';
 export type AlertState = EntityState<Alert>;
 
 @Injectable({ providedIn: 'root' })
-@StoreConfig({ name: 'alert' })
+@StoreConfig({ name: 'alert', resettable: true })
 export class AlertStore extends EntityStore<AlertState> {
   constructor() {
     super();

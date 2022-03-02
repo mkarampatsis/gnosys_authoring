@@ -23,4 +23,8 @@ export class AlertService {
   remove(id: string) {
     this.alertStore.remove(id);
   }
+
+  resetAlert(){
+    this.alertStore.reset();
+  }
 }
