@@ -27,9 +27,13 @@ export class AppComponent {
     this.showMenu = !this.showMenu;
   }
   
-  logout(){
+  signOut(){
     this.showMenu = false;
     this.tokenService.signOut();
+    localStorage.removeItem('AkitaStores');
+    localStorage.removeItem('auth-token');
+    localStorage.removeItem('auth-refreshtoken');
+    localStorage.removeItem('auth-user');
     resetStores();
   }
 }
