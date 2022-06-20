@@ -30,7 +30,7 @@ export class AuthService {
     private readonly jwtService: JwtService
   ) {
     this.cryptr = new Cryptr(process.env.ENCRYPT_JWT_SECRET);
-    this.cryptr = new Cryptr(environment.gnosysURL);
+    this.cryptr = new Cryptr(environment.code4codeURL);
   }
 
   async createAccessToken(userId: string) {

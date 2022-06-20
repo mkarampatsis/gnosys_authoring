@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { MailService } from '@sendgrid/mail';
-import { User } from '@gnosys/interfaces';
+// import { User } from '@gnosys/interfaces';
 
 import { environment } from '../../environments/environment';
 import { ForgotPasswordDocument } from '../users/schemas/forgot-password.schema';
@@ -14,7 +14,7 @@ export class GnosysMailService {
     const uuid = user.verification;
     this.mailService.setApiKey(process.env.SENDGRID_API_KEY);
 
-    const url = `http://${environment.gnosysURL}/#/verify/${uuid}`;
+    const url = `http://${environment.code4codeURL}/#/verify/${uuid}`;
 
     await this.mailService.send({
       to: user.email,
@@ -31,7 +31,7 @@ export class GnosysMailService {
     const uuid = forgotPassword.verification;
     this.mailService.setApiKey(process.env.SENDGRID_API_KEY);
 
-    const url = `http://${environment.gnosysURL}/#/reset/${uuid}`;
+    const url = `http://${environment.code4codeURL}/#/reset/${uuid}`;
 
     await this.mailService.send({
       to: forgotPassword.email,
